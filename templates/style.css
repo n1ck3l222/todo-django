@@ -1,0 +1,54 @@
+h2 {
+	text-align: center;
+	border: 1px #e4e4e4 solid;
+	font: bold;
+	text-shadow: 1px -1px 0px hsla(0, 0%, 50%, 1), 2px -2px 0px hsla(0, 0%, 55%, 1), 3px -3px 0px hsla(0, 0%, 60%, 1), 4px -4px 0px hsla(0, 0%, 65%, 1), 5px -5px 0px hsla(0, 0%, 70%, 1), 6px -6px 0px hsla(0, 0%, 75%, 1), 7px -7px 0px hsla(0, 0%, 80%, 1), 8px -8px 0px hsla(0, 0%, 85%, 1), 9px -9px 0px hsla(0, 0%, 90%, 1);
+  	padding: .2em;
+  	margin: 0;
+}
+
+h3 {
+	text-align: center;
+	bottom: 0px;
+}
+
+.container {
+	padding-top: 30px;
+}
+
+
+.todoex{
+
+}
+
+.editbtn {
+
+}
+
+.uploadbtn{
+
+}
+
+.progress {
+
+}
+
+.author:hover, .author:focus, .author:active {
+   -webkit-stroke-width: 5.3px;
+   -webkit-stroke-color: #000000;
+   -webkit-fill-color: #000000;
+   text-shadow: 1px 0px 20px darkblue;
+   -webkit-transition: width 0.3s; /*Safari & Chrome*/
+   transition: width 0.3s;
+   -moz-transition: width 0.3s; /* Firefox 4 */
+   -o-transition: width 0.3s; /* Opera */
+   }
+
+ .author a{
+   -webkit-transition: all 0.3s ease-in; /*Safari & Chrome*/
+   transition: all 0.3s ease-in;
+   -moz-transition: all 0.3s ease-in; /* Firefox 4 */
+   -o-transition: all 0.3s ease-in; /* Opera */
+   text-decoration:none;
+   color:black;
+   }
