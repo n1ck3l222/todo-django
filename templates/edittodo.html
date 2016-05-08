@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="de">
   <head>
+      {% load staticfiles %}
+     {% load bootstrap3 %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,24 +29,25 @@
       <div class="row">
         <div class="col-md-2"><!--Column left-->
 
-        <a href="index.html" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> Main       </a>
+        <a href="" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> Main       </a>
 
-        <a href="newtodo.html" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> new TODO   </a>
+        <a href="create_todo/" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> new TODO   </a>
 
-        <a href="edittodo.html" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> edit TODO  </a>
+        <a href="edit_todo/" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> edit TODO  </a>
 
-        <a href="impressum.html" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> Impressum  </a>
+        <a href="impressum/" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> Impressum  </a>
+
         </div>
 
         <div class="col-md-10"><!--Column right-->
-
         <h3>edit TODO</h3>
+          <div class="todos">
         <div class="todoex">
-          <div class="col-md-4">
+          <div class="col-md-12">
             {% for todo in todos %}
-            <H5>TODO - DEMO </H5>
+            <H5>{{todo.projectname}}</H5>
             <p>
-              {{todo.name}}<br><br>
+              {{todo.description}}<br><br>
               Deadline: {{todo.deadline}}
             </p>
 
@@ -63,8 +66,8 @@
             <p><br></p>
             {% endfor %}
         </div>
-   
-
+        </div>
+          <div class="col-md-12">
         <div class="editbtn">
           <div class="col-md-3">
             
@@ -85,7 +88,7 @@
             
             <a href="#" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-trash"></span> delete TODO</a>
           </div>
-          
+          </div>
         </div>
 
         </div>

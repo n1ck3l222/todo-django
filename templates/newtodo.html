@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
   <head>
+      {% load staticfiles %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,13 +28,13 @@
       <div class="row">
         <div class="col-md-2"><!--Column left-->
 
-        <a href="index.html" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> Main       </a>
+        <a href="" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> Main       </a>
 
-        <a href="newtodo.html" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> new TODO   </a>
+        <a href="create_todo/" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> new TODO   </a>
 
-        <a href="edittodo.html" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> edit TODO  </a>
+        <a href="edit_todo/" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> edit TODO  </a>
 
-        <a href="impressum.html" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> Impressum  </a>
+        <a href="impressum/" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> Impressum  </a>
 
         </div>
 
@@ -41,42 +42,18 @@
 
         <h3>new TODO</h3>
 
-        <p>TODO - DEMO</p>
+          {% load bootstrap3 %}
+        <form method="TODO" class="form">
+          {% csrf_token %}
+          {% bootstrap_form form %}
+          {% buttons %}
+        <button type="submit" class="btn btn-success  btn-block">
+            {% bootstrap_icon "star" %} Create new TODO
+        </button>
+          {% endbuttons %}
+        </form>
 
-        <div class="form-group">
-        <label for="Projectname">Projectname:</label>
-        <input type="text" class="form-control" id="usr">
-        </div>
-          <div class="form-group">
-          <label for="typeTODO">Desctiption:</label>
-          <textarea class="form-control" rows="5" id="comment"></textarea>
-          </div>
-        <p><strong>Deadline:</p>
-         <div class="form-group">
-                <div class='input-group date' id='datetimepicker5'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker5').datetimepicker({
-                    defaultDate: "11/1/2013",
-                    disabledDates: [
-                        moment("12/25/2013"),
-                        new Date(2013, 11 - 1, 21),
-                        "11/22/2013 00:53"
-                    ]
-                });
-            });
-        </script>
-        <p>................</p>
 
-        <div class="uploadbtn">
-          <a href="#" class="btn btn-success  btn-block"><span class="glyphicon glyphicon-cloud-upload"></span> upload TODO</a>
-        </div>
         </div>
 
       </div>
