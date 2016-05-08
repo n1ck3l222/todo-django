@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
             name='Todo',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
+                ('projectname', models.CharField(max_length=100)),
                 ('description', models.TextField(max_length=500)),
                 ('progress', models.SmallIntegerField(default=0)),
                 ('deadline', models.DateField(blank=True, null=True)),

@@ -11,18 +11,18 @@ def todo_list(request):
     return render(request, 'index.html', {'todos': todos})
 
 def create_todo(request):
-    if request.method == "TODO":
-        form = TodoForm(data=request.TODO)
+    if request.method == "POST":
+        form = TodoForm(data=request.POST)
         if form.is_valid():
             todo = form.save(commit=False)
             todo.projectname = request
             todo.description = request
             todo.created_date = timezone.now()
             todo.save()
-            return redirect('update_todo', pk=todo.pk)
+            return redirect('create_todo', pk=todo.pk)
     else:
         form = TodoForm()
-        context = {'form': form, 'create': True}
+        context = {'form': form, 'create_todo': True}
         return render(request, 'newtodo.html', context)
 
 def edit_todo(request):

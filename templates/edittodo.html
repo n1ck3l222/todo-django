@@ -29,14 +29,14 @@
       <div class="row">
         <div class="col-md-2"><!--Column left-->
 
-        <a href="" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> Main       </a>
+            {% load bootstrap3 %}
+            {% buttons %}
+            {% bootstrap_button "Main" button_type="link" icon="glyphicon glyphicon-menu-right" href="" button_class="btn btn-primary btn-block" %}
+            {% bootstrap_button "new TODO" button_type="link" icon="glyphicon glyphicon-menu-right" href="create_todo" button_class="btn btn-primary btn-block" %}
+            {% bootstrap_button "edit TODO" button_type="link" icon="glyphicon glyphicon-menu-right" href="edit_todo" button_class="btn btn-primary btn-block" %}
+            {% bootstrap_button "Impressum" button_type="link" icon="glyphicon glyphicon-menu-right" href="impressum" button_class="btn btn-primary btn-block" %}
 
-        <a href="create_todo/" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> new TODO   </a>
-
-        <a href="edit_todo/" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> edit TODO  </a>
-
-        <a href="impressum/" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-menu-right"></span> Impressum  </a>
-
+        </div>
         </div>
 
         <div class="col-md-10"><!--Column right-->
@@ -70,13 +70,14 @@
           <div class="col-md-12">
         <div class="editbtn">
           <div class="col-md-6">
-            
-            <a href="#" class="btn btn-info btn-block"><span class="glyphicon glyphicon-scissors"></span> edit TODO</a>
+            {% bootstrap_button "edit TODO" button_type="link" icon="glyphicon glyphicon-scissors" button_class="btn btn-info btn-block" %}
+
           </div>
 
           <div class="col-md-6">
-            
-            <a href="#" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-trash"></span> delete TODO</a>
+            {% bootstrap_button "delete TODO" button_type="link" icon="glyphicon glyphicon-trash" button_class="btn btn-danger btn-block" %}
+
+             {% endbuttons %}
           </div>
           </div>
         </div>
