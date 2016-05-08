@@ -19,7 +19,7 @@ def create_todo(request):
             todo.description = request
             todo.created_date = timezone.now()
             todo.save()
-            return redirect('todo_list', pk=todo.pk)
+            return redirect('update_todo', pk=todo.pk)
     else:
         form = TodoForm()
         context = {'form': form, 'create': True}
