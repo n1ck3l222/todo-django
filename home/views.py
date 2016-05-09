@@ -26,12 +26,22 @@ def create_todo(request):
 
 
 def edit_todo(request):
-    if request.method == "POST":
-        primkey = request.POST['radiotodos']
-        return render(request, 'updatetodo.html', primkey)
+    if request.POST:
+        if 'edit' in request.POST:
+            primkey = request.POST['radiotodos']
+            return render(request, 'updatetodo.html', primkey)
+        elif 'delete' in request.POST:
+            Todo.objects.get(pk=request.POST['radiotodos']).delete()
+            todos = Todo.objects.order_by('created_date')
+            return render(request, 'edittodo.html', {'todos': todos})
     else:
         todos = Todo.objects.order_by('created_date')
         return render(request, 'edittodo.html', {'todos': todos})
+
+def update_todo(request, pk):
+    todo = Todo.objects.get(pk=pk)
+    render(request, update_todo(), todo)
+
 
 def update_todo(request, pk):
     todo = get_object_or_404(Todo, pk=pk)
@@ -47,7 +57,7 @@ def update_todo(request, pk):
 
 def delete(request):
     Todo.objects.get(pk=request.DELETE['pk']).delete()
-    return HttpResponse()
+
 
 def impressum(request):
     return render(request, 'impressum.html', {})
