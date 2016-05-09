@@ -12,22 +12,26 @@ def todo_list(request):
 
 def create_todo(request):
     if request.method == "POST":
-        form = TodoForm(data=request.POST)
+        form = TodoForm(request.POST)
         if form.is_valid():
             todo = form.save(commit=False)
-            todo.projectname = request
-            todo.description = request
             todo.created_date = timezone.now()
             todo.save()
-            return redirect('create_todo', pk=todo.pk)
+            todos = Todo.objects.order_by('created_date')
+            return render(request, 'index.html', {'todos': todos})
     else:
         form = TodoForm()
         context = {'form': form, 'create_todo': True}
         return render(request, 'newtodo.html', context)
 
+
 def edit_todo(request):
-    todos = Todo.objects.order_by('created_date')
-    return render(request, 'edittodo.html', {'todos': todos})
+    if request.method == "POST":
+        primkey = request.POST['radiotodos']
+        return render(request, 'updatetodo.html', primkey)
+    else:
+        todos = Todo.objects.order_by('created_date')
+        return render(request, 'edittodo.html', {'todos': todos})
 
 def update_todo(request, pk):
     todo = get_object_or_404(Todo, pk=pk)
@@ -35,11 +39,15 @@ def update_todo(request, pk):
         form = TodoForm(instance=todo, data=request.TODO)
         if form.is_valid():
             form.save()
-            return redirect('edittodo.html')
-    else:
-        form = TodoForm(instance=todo)
-    context = {'form': form, 'create': False}
-    return render(request, 'edittodo.html', context)
+            return redirect('updatetodo.html')
+        else:
+            form = TodoForm(instance=todo)
+            context = {'form': form, 'create': False}
+            return render(request, 'updatetodo.html', context)
+
+def delete(request):
+    Todo.objects.get(pk=request.DELETE['pk']).delete()
+    return HttpResponse()
 
 def impressum(request):
     return render(request, 'impressum.html', {})

@@ -12,16 +12,6 @@ class Todo(models.Model):
     deadline = models.DateField(blank=True, null=True)
     created_date = models.DateTimeField(default=timezone.now)
 
-    #"create Todo"
-    #def create(self):
-    #    self.created_date=timezone.now()
-    #    self.save()
-
-    #"edit Todo"
-    #def edit(self):
-    #    self.save()
-
-
 
 
 

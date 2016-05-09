@@ -31,10 +31,10 @@
 
             {% load bootstrap3 %}
             {% buttons %}
-            {% bootstrap_button "Main" button_type="link" icon="glyphicon glyphicon-menu-right" href="" button_class="btn btn-primary btn-block" %}
-            {% bootstrap_button "new TODO" button_type="link" icon="glyphicon glyphicon-menu-right" href="create_todo" button_class="btn btn-primary btn-block" %}
-            {% bootstrap_button "edit TODO" button_type="link" icon="glyphicon glyphicon-menu-right" href="edit_todo" button_class="btn btn-primary btn-block" %}
-            {% bootstrap_button "Impressum" button_type="link" icon="glyphicon glyphicon-menu-right" href="impressum" button_class="btn btn-primary btn-block" %}
+            {% bootstrap_button "Main" button_type="link" icon="glyphicon glyphicon-menu-right" href="/" button_class="btn btn-primary btn-block" %}
+            {% bootstrap_button "new TODO" button_type="link" icon="glyphicon glyphicon-menu-right" href="/create_todo" button_class="btn btn-primary btn-block" %}
+            {% bootstrap_button "edit TODO" button_type="link" icon="glyphicon glyphicon-menu-right" href="/edit_todo" button_class="btn btn-primary btn-block" %}
+            {% bootstrap_button "Impressum" button_type="link" icon="glyphicon glyphicon-menu-right" href="/impressum" button_class="btn btn-primary btn-block" %}
 
         </div>
         </div>
@@ -44,6 +44,7 @@
           <div class="todos">
         <div class="todoex">
           <div class="col-md-12">
+            <form method="POST" class="form">{% csrf_token %}
             {% for todo in todos %}
             <H5>{{todo.projectname}}</H5>
             <p>
@@ -60,8 +61,8 @@
 
             </div>
             </div>
-            <div class="radio">
-              <label><input type="radio" name="optradio">{{todo.name}}</label>
+            <div class="radio" name="radiobuttons">
+              <label><input type="Radio" name="radiotodos" value="{{todo.pk}}">{{todo.name}}</label>
             </div>
             <p><br></p>
             {% endfor %}
@@ -70,16 +71,17 @@
           <div class="col-md-12">
         <div class="editbtn">
           <div class="col-md-6">
-            {% bootstrap_button "edit TODO" button_type="link" icon="glyphicon glyphicon-scissors" button_class="btn btn-info btn-block" %}
+            {% bootstrap_button "edit TODO" button_type="submit" icon="glyphicon glyphicon-scissors" button_class="btn btn-info btn-block" %}
 
           </div>
 
           <div class="col-md-6">
-            {% bootstrap_button "delete TODO" button_type="link" icon="glyphicon glyphicon-trash" button_class="btn btn-danger btn-block" %}
+            {% bootstrap_button "delete TODO" button_type="submit" icon="glyphicon glyphicon-trash" button_class="btn btn-danger btn-block" %}
 
              {% endbuttons %}
           </div>
           </div>
+            </form>
         </div>
 
         </div>
