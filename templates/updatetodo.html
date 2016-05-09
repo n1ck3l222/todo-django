@@ -40,12 +40,12 @@
 
         <div class="col-md-10"><!--Column right-->
 
-        <h3>new TODO</h3>
+        <h3>update TODO</h3>
           {% load bootstrap3 %}
         <form method="POST" class="form">{% csrf_token %}
            {% bootstrap_form form %}
           {% buttons %}
-            {% bootstrap_button "Create new TODO" button_type="submit" icon="star" button_class="btn btn-success  btn-block" %}
+            {% bootstrap_button "Update TODO" button_type="submit" icon="refresh" button_class="btn btn-warning  btn-block" %}
           {% endbuttons %}
         </form>
 
