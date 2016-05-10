@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 
 
@@ -12,8 +13,5 @@ class Todo(models.Model):
     deadline = models.DateField(blank=True, null=True)
     created_date = models.DateTimeField(default=timezone.now)
 
-
-
-
-
-
+    def get_absolut_url(self):
+        return reverse('todo-detail', kwargs={'pk': self.pk})

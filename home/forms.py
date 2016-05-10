@@ -5,6 +5,6 @@ class TodoForm(ModelForm):
     class Meta:
         model = Todo
         include = ('projectname', 'description', 'progress', 'deadline')
-        exclude = ('progress', 'created_date')
+        exclude = ('pk', 'progress', 'created_date')
 
 

@@ -45,7 +45,7 @@
         <form method="POST" class="form">{% csrf_token %}
            {% bootstrap_form form %}
           {% buttons %}
-            {% bootstrap_button "Update TODO" button_type="submit" icon="refresh" button_class="btn btn-warning  btn-block" %}
+            {% bootstrap_button "Update TODO" button_type="submit" icon="refresh" button_class="btn btn-warning  btn-block" name="update" value="updatetodo" %}
           {% endbuttons %}
         </form>
 
