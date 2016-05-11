@@ -1,8 +1,7 @@
-from django.core.urlresolvers import reverse
-from django.http.response import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, redirect, get_object_or_404
+
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import render
 from django.utils import timezone
-from django.views.generic import UpdateView
 
 from .models import Todo
 from .forms import TodoForm
@@ -46,9 +45,11 @@ def update_todo(request, pk):
     if request.method == "POST":
         form = TodoForm(request.POST)
         if form.is_valid():
-            newObject = form.save(commit=False)
-            todo = Todo.objects.filter(pk=newObject.pk)
-            todo.projectname = newObject.projectname
+            todo = Todo.objects.get(pk=pk)
+            todo.projectname = request.POST['projectname']
+            todo.description = request.POST['description']
+            todo.deadline = request.POST['deadline']
+            todo.save()
             todos = Todo.objects.order_by('created_date')
             return render(request, 'index.html', {'todos': todos})
     else:
@@ -58,12 +59,6 @@ def update_todo(request, pk):
                                 'created_date': todo.created_date})
         context = {'form': form, 'update_todo': True}
         return render(request, 'updatetodo.html', context)
-
-
-
-def delete(request):
-    Todo.objects.get(pk=request.DELETE['pk']).delete()
-
 
 def impressum(request):
     return render(request, 'impressum.html', {})
