@@ -4,7 +4,8 @@ from django.shortcuts import render
 from django.utils import timezone
 
 from .models import Todo
-from .forms import TodoForm
+from .forms import TodoForm, TodoUpdateForm
+
 
 # Create your views here.
 
@@ -43,18 +44,19 @@ def edit_todo(request):
 
 def update_todo(request, pk):
     if request.method == "POST":
-        form = TodoForm(request.POST)
+        form = TodoUpdateForm(request.POST)
         if form.is_valid():
             todo = Todo.objects.get(pk=pk)
             todo.projectname = request.POST['projectname']
             todo.description = request.POST['description']
+            todo.progress = request.POST['progress']
             todo.deadline = request.POST['deadline']
             todo.save()
             todos = Todo.objects.order_by('created_date')
             return render(request, 'index.html', {'todos': todos})
     else:
         todo = Todo.objects.get(pk=pk)
-        form = TodoForm(initial={'pk': todo.pk, 'projectname': todo.projectname, 'description': todo.description,
+        form = TodoUpdateForm(initial={'pk': todo.pk, 'projectname': todo.projectname, 'description': todo.description,
                                 'progress': todo.progress, 'deadline': todo.deadline,
                                 'created_date': todo.created_date})
         context = {'form': form, 'update_todo': True}

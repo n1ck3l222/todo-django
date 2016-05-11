@@ -1,4 +1,5 @@
 from django.core.urlresolvers import reverse
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 
@@ -9,7 +10,7 @@ from django.utils import timezone
 class Todo(models.Model):
     projectname = models.CharField(max_length=100)
     description = models.TextField(max_length=500)
-    progress = models.SmallIntegerField(default=0)
+    progress = models.SmallIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
     deadline = models.DateField(blank=True, null=True)
     created_date = models.DateTimeField(default=timezone.now)
 
